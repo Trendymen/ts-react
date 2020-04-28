@@ -5,11 +5,11 @@ import { List, Typography, Row, Col, Checkbox } from "antd";
 
 const { Text } = Typography;
 
-export interface CartItem {
+export type CartItem = {
   id: number;
   name: string;
   price: number;
-}
+};
 
 // cartItems的价格总和
 const sumPrice = (cartItems: CartItem[]): number => {
