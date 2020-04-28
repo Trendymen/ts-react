@@ -4,9 +4,7 @@ export const CHANGE_MAP = "CHANGE_MAP";
 export const CHANGE_ALL_MAP = "CHANGE_ALL_MAP";
 export const SET_MAP = "SET_MAP";
 
-type MapType = {
-  [p: string]: unknown;
-};
+type MapType = Record<string, unknown>;
 
 interface ActionChangeMap<T> {
   type: typeof CHANGE_MAP;

@@ -1,11 +1,6 @@
 import { useMap, CHANGE_ALL_MAP } from "./useMap";
 import { useCallback } from "react";
 
-interface Option {
-  /** 用来在map中记录勾选状态的key 一般取id */
-  key?: string;
-}
-
 type CheckedMap = {
   [key: string]: boolean;
 };
@@ -21,7 +16,7 @@ interface OnCheckedAllChange {
   (newCheckedAll: boolean): void;
 }
 
-export const useChecked = <T extends Record<string, any>>(
+export const useChecked = <T extends Record<string, unknown>>(
   dataSource: T[],
   keyName: keyof T = "id"
 ): {
@@ -39,13 +34,16 @@ export const useChecked = <T extends Record<string, any>>(
     [onMapChange]
   );
 
-  const filterChecked: FilterChecked<T> = (): T[] =>
-    dataSource.filter((data) => {
-      return map[data[keyName]];
-    });
+  const filterChecked: FilterChecked<T> = useCallback(
+    (): T[] =>
+      dataSource.filter((data) => {
+        return map[data[keyName] as string];
+      }),
+    [map, dataSource, keyName]
+  );
 
   const checkedAll = !dataSource.some((data) => {
-    return !map[data[keyName]];
+    return !map[data[keyName] as string];
   });
 
   const onCheckedAllChange = (newCheckedAll: boolean): void => {
