@@ -1,10 +1,5 @@
-import React, {
-  useEffect,
-  useState,
-  useCallback,
-  useRef,
-  MutableRefObject,
-} from "react";
+import React, { useEffect, useState, useCallback } from "react";
+import { useChecked } from "./useChecked";
 import CartItemFC from "./CartItem";
 import { List, Typography, Row, Col, Checkbox } from "antd";
 
@@ -16,60 +11,9 @@ export interface CartItem {
   price: number;
 }
 
-type CheckedMap = {
-  [id: number]: boolean;
-};
-
-export type OnCheckedChangeRef = MutableRefObject<
-  (cartItem: CartItem, checked: boolean) => void
->;
-
 // cartItems的价格总和
 const sumPrice = (cartItems: CartItem[]): number => {
   return cartItems.reduce((sum, cur) => sum + cur.price, 0);
-};
-
-const filterChecked = (
-  cartItems: CartItem[],
-  checkedMap: CheckedMap
-): CartItem[] => {
-  return cartItems.filter((cartItem) => checkedMap[cartItem.id]);
-};
-
-// 商品勾选
-const useCheckedMap = (
-  cartItems: CartItem[]
-): [CheckedMap, OnCheckedChangeRef, Function, boolean] => {
-  const [checkedMap, setCheckedMap] = useState<CheckedMap>({});
-  const onCheckedChange = (cartItem: CartItem, checked: boolean): void => {
-    const { id } = cartItem;
-    const newCheckedMap: CheckedMap = Object.assign({}, checkedMap, {
-      [id]: checked,
-    });
-    setCheckedMap(newCheckedMap);
-  };
-
-  const onCheckedChangeRef: OnCheckedChangeRef = useRef(onCheckedChange);
-  onCheckedChangeRef.current = onCheckedChange;
-
-  const onCheckedAllChange = (
-    cartData: CartItem[],
-    newCheckedAll: boolean
-  ): void => {
-    // 构造新的勾选map
-    const newCheckedMap: CheckedMap = {};
-    // 全选
-    newCheckedAll &&
-      cartData.forEach((cartItem) => {
-        newCheckedMap[cartItem.id] = true;
-      });
-    // 取消全选的话 直接把map赋值为空对象
-    setCheckedMap(newCheckedMap);
-  };
-
-  const checkedAll = !cartItems.some((item) => !checkedMap[item.id]);
-
-  return [checkedMap, onCheckedChangeRef, onCheckedAllChange, checkedAll];
 };
 
 const getData = (): Promise<CartItem[]> => {
@@ -85,12 +29,14 @@ const getData = (): Promise<CartItem[]> => {
 
 const Cart: React.FC = () => {
   const [cartData, setCartData] = useState<CartItem[]>([]);
-  const [
+
+  const {
     checkedMap,
-    onCheckedChangeRef,
-    onCheckedAllChange,
+    filterChecked,
     checkedAll,
-  ] = useCheckedMap(cartData);
+    onCheckedChange,
+    onCheckedAllChange,
+  } = useChecked(cartData);
 
   const fetchData = useCallback(async function (): Promise<void> {
     console.log("getData");
@@ -106,7 +52,7 @@ const Cart: React.FC = () => {
       <CartItemFC
         item={item}
         checked={checkedMap[item.id]}
-        onCheckedChangeRef={onCheckedChangeRef}
+        onCheckedChange={onCheckedChange}
       />
     </List.Item>
   );
@@ -116,14 +62,14 @@ const Cart: React.FC = () => {
       <Col>
         <Checkbox
           checked={checkedAll}
-          onChange={(e): void => onCheckedAllChange(cartData, e.target.checked)}
+          onChange={(e): void => onCheckedAllChange(e.target.checked)}
         >
           全选
         </Checkbox>
       </Col>
       <Col>
         价格总计：
-        <Text code>${sumPrice(filterChecked(cartData, checkedMap))}</Text>
+        <Text code>${sumPrice(filterChecked())}</Text>
       </Col>
     </Row>
   );

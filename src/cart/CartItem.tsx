@@ -1,14 +1,15 @@
 import React from "react";
 import { Typography, Checkbox, Row, Col } from "antd";
-import { CartItem, OnCheckedChangeRef } from "./";
+import { CartItem } from "./";
 import "./index.css";
+import { OnCheckedChange } from "./useChecked";
 
 const { Text } = Typography;
 
 interface Props {
   item: CartItem;
   checked: boolean;
-  onCheckedChangeRef: OnCheckedChangeRef;
+  onCheckedChange: OnCheckedChange<CartItem>;
 }
 
 const isEqual = (preProps: Props, nextProps: Props): boolean => {
@@ -16,13 +17,13 @@ const isEqual = (preProps: Props, nextProps: Props): boolean => {
 };
 
 const CartItemFC: React.FC<Props> = React.memo(
-  ({ item, checked, onCheckedChangeRef }: Props) => {
+  ({ item, checked, onCheckedChange }: Props) => {
     return (
       <Row className="cart-item">
         <Col span={4}>
           <Checkbox
             checked={checked}
-            onChange={(e) => onCheckedChangeRef.current(item, e.target.checked)}
+            onChange={(e) => onCheckedChange(item, e.target.checked)}
           />
         </Col>
         <Col span={20}>
