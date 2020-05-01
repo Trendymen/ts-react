@@ -5,11 +5,11 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     "plugin:@typescript-eslint/recommended",
     "prettier/@typescript-eslint",
-    "prettier/react",
-    "plugin:prettier/recommended"
+    "plugin:prettier/recommended",
+    "prettier/react"
   ],
   rules: {
     "prettier/prettier": "warn",
-    'react-hooks/exhaustive-deps': 'error',
+    'react-hooks/exhaustive-deps': 'error'
   }
 }

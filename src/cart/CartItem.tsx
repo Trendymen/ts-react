@@ -23,7 +23,7 @@ const CartItemFC: React.FC<Props> = React.memo(
         <Col span={4}>
           <Checkbox
             checked={checked}
-            onChange={(e) => onCheckedChange(item, e.target.checked)}
+            onChange={(e): void => onCheckedChange(item, e.target.checked)}
           />
         </Col>
         <Col span={20}>

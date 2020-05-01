@@ -1,16 +1,16 @@
 .cart-item {
-    /*display: flex;*/
+  /*display: flex;*/
 }
 
 .cart {
-    margin: auto;
-    max-width: 400px;
+  margin: auto;
+  max-width: 400px;
 }
 
 .title {
-    text-align: center;
+  text-align: center;
 }
 
 .list-item {
-    display: block;
+  display: block;
 }
