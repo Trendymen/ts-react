@@ -1,15 +1,15 @@
-import { createStore } from "redux";
-import { Provider, useSelector } from "react-redux";
+import { applyMiddleware, createStore } from "redux";
+import thunk, { ThunkDispatch } from "redux-thunk";
+import { Provider } from "react-redux";
 import React from "react";
-import reducer, { State } from "./reducers";
-import "./index.css";
+import reducer from "./reducers";
+import App from "./components/App";
+import { getProductsData } from "./actions";
+import { composeWithDevTools } from "redux-devtools-extension";
 
-const store = createStore(reducer);
+const store = createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
-const App: React.FC = () => {
-  const count = useSelector((state: State) => state);
-  return <div className="count">{count}</div>;
-};
+(store.dispatch as ThunkDispatch<any, any, any>)(getProductsData());
 
 const ReduxHooksDemo: React.FC = () => (
   <Provider store={store}>
