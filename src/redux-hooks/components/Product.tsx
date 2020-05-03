@@ -1,7 +1,9 @@
 import React from "react";
 import { Product as ProductType } from "../reducers";
 
-type ProductProps = Omit<ProductType, "id"> & { quantity: number };
+type ProductProps = Omit<ProductType, "id" | "inventory"> & {
+  quantity: number;
+};
 
 const Product: React.FC<ProductProps> = ({ title, price, quantity }) => (
   <div>
