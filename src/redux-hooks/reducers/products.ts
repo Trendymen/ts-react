@@ -1,5 +1,5 @@
 import { Reducer } from "redux";
-import { Product } from "./index";
+import { Product, State } from "./index";
 
 import { combineReducers } from "redux";
 import * as actionsType from "../constants";
@@ -46,8 +46,8 @@ const visibleIds: Reducer<VisibleIdsState, ReceiveProductsAction> = (
   }
 };
 
-export const getVisibleProducts = (state: ProductsState): Product[] =>
-  state.visibleIds.map((id) => state.byId[id]);
+export const getVisibleProducts = (state: State): Product[] =>
+  state.products.visibleIds.map((id) => state.products.byId[id]);
 
 export default combineReducers({
   byId,

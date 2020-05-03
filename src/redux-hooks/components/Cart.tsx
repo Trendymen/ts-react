@@ -1,11 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { getCartProducts, getTotalPrices, State } from "../reducers";
+import { useSelector, shallowEqual } from "react-redux";
+import { getCartProducts, getTotalPrices } from "../reducers";
 import Product from "./Product";
 
 const Cart: React.FC = () => {
-  const cartProducts = useSelector((state: State) => getCartProducts(state));
-  const totalPrices = useSelector((state: State) => getTotalPrices(state));
+  const cartProducts = useSelector(getCartProducts, shallowEqual);
+  const totalPrices = useSelector(getTotalPrices);
   return (
     <section className={"cart-wrapper"}>
       <h2>Your Cart</h2>

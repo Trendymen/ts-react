@@ -1,15 +1,11 @@
 import React from "react";
 import { useSelector, shallowEqual } from "react-redux";
 import ProductItem from "./ProductItem";
-import { State } from "../reducers";
 import { getVisibleProducts } from "../reducers/products";
 
 const Products: React.FC = () => {
   console.log("products");
-  const productsState = useSelector(
-    (state: State) => getVisibleProducts(state.products),
-    shallowEqual
-  );
+  const productsState = useSelector(getVisibleProducts, shallowEqual);
   return (
     <section className={"products-section"}>
       <h2>Products</h2>

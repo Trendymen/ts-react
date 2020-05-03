@@ -8,7 +8,6 @@ import { useDispatch } from "react-redux";
 type ProductIProps = ProductType;
 
 const ProductItem: React.FC<ProductIProps> = React.memo(({ ...props }) => {
-  console.log(props.id);
   const dispatch = useDispatch();
   return (
     <div className="product-item">
