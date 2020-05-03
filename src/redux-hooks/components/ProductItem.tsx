@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 
 type ProductIProps = ProductType;
 
-const ProductItem: React.FC<ProductIProps> = ({ ...props }) => {
+const ProductItem: React.FC<ProductIProps> = React.memo(({ ...props }) => {
   console.log(props.id);
   const dispatch = useDispatch();
   return (
@@ -24,6 +24,6 @@ const ProductItem: React.FC<ProductIProps> = ({ ...props }) => {
       </button>
     </div>
   );
-};
+});
 
 export default ProductItem;
