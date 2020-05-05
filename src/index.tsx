@@ -3,14 +3,16 @@ import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
 import "./index.css";
 // import Cart from "./cart";
-import CartRedux from "./redux-hooks/index";
+// import CartRedux from "./redux-hooks/index";
+import RedditList from "./async-example/index";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   // <React.StrictMode>
   <>
     {/*<Cart />*/}
-    <CartRedux />
+    {/*<CartRedux />*/}
+    <RedditList />
   </>,
   // </React.StrictMode>,
   document.getElementById("root")

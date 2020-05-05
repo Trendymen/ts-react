@@ -10,6 +10,10 @@ module.exports = {
   ],
   rules: {
     "prettier/prettier": "warn",
-    'react-hooks/exhaustive-deps': 'error'
+    'react-hooks/exhaustive-deps': 'error',
+    "react/self-closing-comp": ["warn", {
+      "component": true,
+      "html": true
+    }]
   }
 }

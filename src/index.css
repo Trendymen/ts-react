@@ -1,3 +1,6 @@
+/*noinspection CssInvalidAtRule*/
+@import-normalize
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, "Roboto", "Segoe UI", "Oxygen",
@@ -9,4 +12,9 @@ body {
 
 * {
   list-style: none;
+}
+
+ul {
+    margin: 0;
+    padding: 0;
 }

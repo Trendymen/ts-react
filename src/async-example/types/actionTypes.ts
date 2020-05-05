@@ -1,0 +1,3 @@
+export const RECEIVE_DATA = "RECEIVE_DATA";
+export const SELECT_SUBREDDIT = "SELECT_SUBREDDIT";
+export const REQUEST_POSTS = "REQUEST_POSTS";
