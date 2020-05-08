@@ -83,10 +83,42 @@ const measure = (
     endLoc: number = fullText.length,
     lastSuccessLoc = 0
   ): { reactNode: React.ReactNode; finished: boolean } {
+    //二分查找
+    while (startLoc < endLoc - 1) {
+      const mid = Math.floor((startLoc + endLoc) / 2);
+      textNode.textContent = fullText.slice(0, mid);
+      if (inRange()) {
+        startLoc = mid;
+      } else {
+        endLoc = mid;
+      }
+    }
+
+    for (let step = endLoc; step > 0; step--) {
+      const text = fullText.slice(0, step);
+      textNode.textContent = text;
+
+      if (inRange()) {
+        //如果是全部长度，则说明容器还有空余，否则已经满了测量已经结束
+        return step === fullText.length
+          ? {
+              finished: false,
+              reactNode: text,
+            }
+          : {
+              finished: true,
+              reactNode: text,
+            };
+      }
+    }
+    return {
+      finished: false,
+      reactNode: "",
+    };
+    //递归法
+    /*    //二分查找
     const mid = Math.floor((startLoc + endLoc) / 2);
     textNode.textContent = fullText.slice(0, mid);
-
-    //二分查找
     if (startLoc >= endLoc - 1) {
       for (let step = endLoc; step > 0; step--) {
         const text = fullText.slice(0, step);
@@ -110,7 +142,7 @@ const measure = (
     if (inRange()) {
       return measureText(textNode, fullText, mid, endLoc, mid);
     }
-    return measureText(textNode, fullText, startLoc, mid, lastSuccessLoc);
+    return measureText(textNode, fullText, startLoc, mid, lastSuccessLoc);*/
   }
 
   contentNodes.some((node) => {
