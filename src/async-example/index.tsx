@@ -1,5 +1,5 @@
 import React from "react";
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
 import rootReducer from "./reducers/index";
 import { Provider } from "react-redux";
 import { watchFetchData } from "./sagas";
@@ -10,7 +10,7 @@ const sagaMiddleware = createSageMiddleware();
 
 const store = configureStore({
   reducer: rootReducer,
-  middleware: [sagaMiddleware],
+  middleware: [...getDefaultMiddleware(), sagaMiddleware],
 });
 
 sagaMiddleware.run(watchFetchData);

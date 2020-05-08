@@ -1,21 +1,38 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "antd/dist/antd.css";
+import { Typography } from "antd";
 import "./index.css";
 // import Cart from "./cart";
 // import CartRedux from "./redux-hooks/index";
-import RedditList from "./async-example/index";
+// import RedditList from "./async-example/index";
 import * as serviceWorker from "./serviceWorker";
+import EllipsisParagraph from "./components/EllipsisParagraph";
+
+const root = document.getElementById("root");
 
 ReactDOM.render(
   // <React.StrictMode>
   <>
     {/*<Cart />*/}
     {/*<CartRedux />*/}
-    <RedditList />
+    {/*<RedditList />*/}
+    <EllipsisParagraph rows={2}>
+      洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad
+      dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd
+      洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad
+      dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd
+      洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad
+      dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd
+      洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad
+      dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd
+      洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad
+      dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd
+      洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad
+    </EllipsisParagraph>
   </>,
   // </React.StrictMode>,
-  document.getElementById("root")
+  root
 );
 
 // If you want your app to work offline and load faster, you can change
