@@ -25,5 +25,5 @@ jobs:
       run: yarn
     # Runs a single command using the runners shell
     - name: build
-      run: yarn run build
+      run: CI=flase yarn run build
 
