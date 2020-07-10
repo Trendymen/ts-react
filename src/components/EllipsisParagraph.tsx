@@ -9,7 +9,11 @@ const ELLIPSIS_STR = "...";
 let ellipsisContainer: HTMLDivElement;
 
 const pxToNumber = (styleValue: string): number => {
-  return parseFloat(styleValue);
+  if (!styleValue) return 0;
+
+  const match = styleValue.match(/^\d*(\.\d*)?/);
+
+  return match ? Number(match[0]) : 0;
 };
 
 const measure = (
@@ -30,7 +34,7 @@ const measure = (
   const originStyle = getComputedStyle(renderedDiv);
   const lineHeight = pxToNumber(originStyle.getPropertyValue("line-height"));
   const maxHeight = Math.round(
-    lineHeight * rows +
+    lineHeight * (rows + 1) +
       pxToNumber(originStyle.paddingTop) +
       pxToNumber(originStyle.paddingBottom)
   );
@@ -83,7 +87,7 @@ const measure = (
     endLoc: number = fullText.length,
     lastSuccessLoc = 0
   ): { reactNode: React.ReactNode; finished: boolean } {
-    //二分查找
+    //二分查找 迭代法
     while (startLoc < endLoc - 1) {
       const mid = Math.floor((startLoc + endLoc) / 2);
       textNode.textContent = fullText.slice(0, mid);

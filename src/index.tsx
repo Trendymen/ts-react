@@ -17,7 +17,7 @@ ReactDOM.render(
     {/*<Cart />*/}
     {/*<CartRedux />*/}
     {/*<RedditList />*/}
-    <EllipsisParagraph rows={2}>
+    <EllipsisParagraph rows={3}>
       洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad
       dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd
       洒洒水 dsdfadfdfafadfadfad dasdasdasda sassdasd 洒洒水 dsdfadfdfafadfadfad
